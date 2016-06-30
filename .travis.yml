@@ -2,7 +2,7 @@ language: ruby
 rvm:
   - 2.2.2
   - 2.2.3
-bundler_args: --without development
+bundler_args: --without local
 addons:
   code_climate:
     repo_token: f53558412d42058b35e8dc81c8292423e3c9fcfb94d86c5f0efbc2aee1e95028
