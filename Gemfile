@@ -6,6 +6,7 @@ group :development do
   gem 'pry'
 
 end
+gem 'codeclimate-test-reporter', group: :test, require: nil
 
 # Specify your gem's dependencies in decent_action.gemspec
 gemspec
