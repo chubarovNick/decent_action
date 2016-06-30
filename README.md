@@ -1,3 +1,8 @@
+[![Build Status](https://travis-ci.org/chubarovNick/decent_action.svg?branch=master)](https://travis-ci.org/chubarovNick/decent_action)
+[![Code Climate](https://codeclimate.com/github/chubarovNick/decent_action/badges/gpa.svg)](https://codeclimate.com/github/chubarovNick/decent_action)
+[![Issue Count](https://codeclimate.com/github/chubarovNick/decent_action/badges/issue_count.svg)](https://codeclimate.com/github/chubarovNick/decent_action)
+[![Test Coverage](https://codeclimate.com/github/chubarovNick/decent_action/badges/coverage.svg)](https://codeclimate.com/github/chubarovNick/decent_action/coverage)
+
 # DecentAction
 
 Gem inspired Interactor approach of building application logic and declarative contract from Trailblazer operation gem
