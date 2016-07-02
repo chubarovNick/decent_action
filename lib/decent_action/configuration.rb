@@ -1,9 +1,11 @@
 module DecentAction
   class Configuration
-    attr_accessor :wrappers
+    attr_reader :wrappers
+    attr_reader :exception_handlers
 
     def initialize
-      self.wrappers = []
+      @wrappers = []
+      @exception_handlers = {}
     end
 
     def use(wrapper)
@@ -11,6 +13,10 @@ module DecentAction
         wr << wrapper
         wr.uniq!
       end
+    end
+
+    def handle_exception(exception_class, handler)
+      exception_handlers[exception_class] = handler
     end
 
   end

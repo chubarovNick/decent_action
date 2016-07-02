@@ -28,7 +28,21 @@ describe DecentAction do
         specify 'should include wrapper' do
           expect(subject.wrappers).to include(wrapper)
         end
+      end
 
+      context 'when .handle_execption with exception_class' do
+        let(:handler) { double(:custom_hanler) }
+        subject { DecentAction.config.exception_handlers }
+
+        before do
+          DecentAction.configure do |config|
+            config.handle_exception(DecentAction::Exception::InvalidError, handler)
+          end
+        end
+
+        it { is_expected.not_to be_nil }
+
+        it { is_expected.to include(DecentAction::Exception::InvalidError => handler) }
 
 
       end

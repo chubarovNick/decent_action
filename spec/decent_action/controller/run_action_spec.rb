@@ -20,25 +20,21 @@ class ControllerStub
 end
 
 class SampleWrapper < DecentAction::ActionWrappers::Base
-  class << self
-    def wrap
-      yield
-    end
+  def wrap
+    yield
   end
 end
 
 class ExceptionWrapper < DecentAction::ActionWrappers::Base
-  class << self
 
-    def wrap
-      begin
-        yield
-      rescue  StandardError
-        return 'Error raised'
-      end
+  def wrap
+    begin
+      yield
+    rescue  StandardError
+      return 'Error raised'
     end
-
   end
+
 end
 
 
@@ -64,7 +60,7 @@ describe DecentAction::Controller::RunAction do
           end
         end
 
-        before { expect(SampleWrapper).to receive(:wrap).and_call_original }
+        before { expect_any_instance_of(SampleWrapper).to receive(:wrap).and_call_original }
 
         it { is_expected.to eq('Awesome Gem') }
       end
@@ -76,7 +72,7 @@ describe DecentAction::Controller::RunAction do
           end
         end
 
-        before { expect(ExceptionWrapper).to receive(:wrap).and_call_original }
+        before { expect_any_instance_of(ExceptionWrapper).to receive(:wrap).and_call_original }
 
         context 'and no exception raised' do
 

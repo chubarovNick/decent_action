@@ -7,7 +7,7 @@ module DecentAction
 
       def wrap_action(&action_performer)
         DecentAction.config.wrappers.reduce action_performer do |result, wrapper|
-          wrapper.perform do
+          wrapper.new(self).perform do
             result.call
           end
         end.call
