@@ -60,6 +60,22 @@ describe DecentAction::Base do
 
     end
 
+    describe '#errors' do
+      before { foo_instance.valid? }
+      subject { foo_instance.contract.errors_hash }
+      context 'when params has errors' do
+       let(:params) do
+        {title: nil, user:{name: nil}}
+       end
+
+       specify 'erros should contains validation' do
+         expect(subject[:title]).not_to be_nil
+         expect(subject[:user]).not_to be_nil
+         expect(subject[:user][:name]).not_to be_nil
+       end
+      end
+    end
+
   end
 
   describe '#valid?' do
