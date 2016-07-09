@@ -3,7 +3,11 @@ module DecentActions
     class Transaction < Base
 
       def wrap
-        yield
+        strategy_config = DecentAction.config.transaction_strategy
+        strategy = "DecentAction::Strategies::Transaction#{strategy_config.camelize}".constantize
+        strategy.new.wrap do
+          yield
+        end
       end
 
     end

@@ -25,7 +25,9 @@ Or install it yourself as:
 
 ## Usage
 
-Define action in your application
+# Contract
+
+Contract is declarative presentation of input data with validations. Definnig example:
 
 ```ruby
 
@@ -39,6 +41,13 @@ class Foo < DecentAction::Base
       attribute :name, String
       validates :name, presence: true
     end
+
+    collection :contacts do
+      attribute :first_name, String
+      attribute :last_name, String
+
+      validates :first_name, :last_name, presence: true
+    end
   end
 
   def perform
@@ -47,8 +56,14 @@ class Foo < DecentAction::Base
 
 end
 ```
+Each `object` and `collection` block is nested objects with their own validations
 
-Then include in controller module of running action
+# Run action
+
+Module ` DecentAction::Controller::RunAction` provide instance method `run(<action_class>, <action_params>)`.
+
+Include it in Rails controller or som other request handler place
+
 ```ruby
 include DecentAction::Controller::RunAction
 ```
@@ -57,6 +72,15 @@ after that in controller available method `run`
 
 ```ruby
 run Foo, {title: 'Title', user: {name: 'User name'}}
+```
+
+# Configuration
+
+```
+DecentAction.configure do |config|
+  config.actor :user # Method which will be used for authentication block
+  config.use MyWrapper # Append wrapper to the end of wrappers list
+end
 ```
 
 ## Development

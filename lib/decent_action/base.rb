@@ -1,11 +1,12 @@
 module DecentAction
   class Base
-    include DecentAction::HasContract
+    include DecentAction::Authorization::Dsl
+    include DecentAction::Contract::Dsl
 
     attr_reader :result
 
-    def initialize(contract)
-      self.contract = contract
+    def initialize(params_hash)
+      self.contract = params_hash
     end
 
     def perform

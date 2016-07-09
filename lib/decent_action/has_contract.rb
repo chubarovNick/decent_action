@@ -34,7 +34,6 @@ module DecentAction
         safe_nested_objects.map{|col| send(col)}.flatten.compact.map(&method)
       end
 
-
     end
 
     module ClassMethods
@@ -61,6 +60,4 @@ module DecentAction
 
   end
 end
-
-
 

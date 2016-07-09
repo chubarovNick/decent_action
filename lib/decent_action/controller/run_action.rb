@@ -7,12 +7,14 @@ module DecentAction
         include DecentAction::Wrapper
 
         def run(action_class, params)
-          interaction = action_class.new(params)
+
+          action_context = DecentAction::Context.new(action_class, self, params)
 
           wrap_action do
-            interaction.run
-            yield(interaction)
+            action_context.run
+            yield(action_context.action)
           end
+
         end
 
       end
