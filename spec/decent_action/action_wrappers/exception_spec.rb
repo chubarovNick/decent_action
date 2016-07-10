@@ -48,12 +48,12 @@ describe DecentAction::ActionWrappers::Exception do
       context 'when handled' do
         before do
           DecentAction.configure do |config|
-            config.handle_exception(NotStandardError, Proc.new{ handler })
+            config.handle_exception(NotStandardError, Proc.new{|action| handler(action) })
           end
         end
 
         before do
-          expect(action_scope).to receive(:handler)
+          expect(action_scope).to receive(:handler).with(execution_context.action)
         end
 
         it {is_expected.to eq('handler') }

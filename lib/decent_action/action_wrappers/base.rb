@@ -26,7 +26,7 @@ module DecentAction
       private
 
       def eval_block_in_context(handler)
-        execution_context.action_scope.instance_eval(&handler)
+        execution_context.action_scope.instance_exec(execution_context.action, &handler)
       end
 
     end
