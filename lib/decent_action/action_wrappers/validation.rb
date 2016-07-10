@@ -6,7 +6,7 @@ module DecentAction
         if action.contract.valid?
           yield
         else
-          controller.render json: action.contract.errors, status: 422
+          raise DecentAction::Exception::InvalidError
         end
 
       end

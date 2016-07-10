@@ -1,5 +1,18 @@
 describe DecentAction::ActionWrappers::Exception do
-  let(:execution_context) { double(:context, handler: 'handler') }
+  let(:action_scope) { double(:action_scope, handler: 'handler') }
+
+  class FooAction < DecentAction::Base
+    contract do
+      attribute :title, String
+      validates :title, presence: true
+    end
+
+    def perform
+      contract.title
+    end
+  end
+
+  let(:execution_context) { DecentAction::Context.new(FooAction, action_scope, {title: 'title'}) }
 
   let(:wrapper) { described_class.new(execution_context) }
 
@@ -40,7 +53,7 @@ describe DecentAction::ActionWrappers::Exception do
         end
 
         before do
-          expect(execution_context).to receive(:handler)
+          expect(action_scope).to receive(:handler)
         end
 
         it {is_expected.to eq('handler') }

@@ -24,6 +24,7 @@ require 'decent_action/contract/errors'
 
 require 'decent_action/action_wrappers/base'
 require 'decent_action/action_wrappers/exception'
+require 'decent_action/action_wrappers/validation'
 require 'decent_action/controller/wrapper'
 require 'decent_action/controller/run_action'
 

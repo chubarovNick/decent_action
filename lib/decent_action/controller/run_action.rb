@@ -10,7 +10,7 @@ module DecentAction
 
           action_context = DecentAction::Context.new(action_class, self, params)
 
-          wrap_action do
+          wrap_action(action_context) do
             action_context.run
             yield(action_context.action)
           end

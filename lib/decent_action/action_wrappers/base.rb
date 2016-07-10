@@ -19,10 +19,14 @@ module DecentAction
         end
       end
 
+      def action
+        execution_context.action
+      end
+
       private
 
       def eval_block_in_context(handler)
-        execution_context.instance_eval(&handler)
+        execution_context.action_scope.instance_eval(&handler)
       end
 
     end
