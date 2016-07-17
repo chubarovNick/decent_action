@@ -1,16 +1,18 @@
 module DecentAction
-  module Wrapper
-    extend ActiveSupport::Concern
+  module Controller
+    module Wrapper
+      extend ActiveSupport::Concern
 
 
-    included do
+      included do
 
-      def wrap_action(action_context, &action_performer)
-        DecentAction.config.wrappers.reduce action_performer do |result, wrapper|
-          wrapper.new(action_context).perform do
-            result.call
-          end
-        end.call
+        def wrap_action(action_context, &action_performer)
+          DecentAction.config.wrappers.reverse.reduce action_performer do |result, wrapper|
+            wrapper.new(action_context).perform do
+              result.call
+            end
+          end.call
+        end
       end
     end
   end

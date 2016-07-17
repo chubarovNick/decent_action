@@ -4,7 +4,7 @@ module DecentAction
       extend ActiveSupport::Concern
 
       included do
-        include DecentAction::Wrapper
+        include DecentAction::Controller::Wrapper
 
         def run(action_class, params)
 

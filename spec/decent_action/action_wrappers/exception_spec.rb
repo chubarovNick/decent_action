@@ -1,4 +1,6 @@
 describe DecentAction::ActionWrappers::Exception do
+   before { DecentAction.reset_config }
+
   let(:action_scope) { double(:action_scope, handler: 'handler') }
 
   class FooAction < DecentAction::Base
@@ -57,6 +59,8 @@ describe DecentAction::ActionWrappers::Exception do
         end
 
         it {is_expected.to eq('handler') }
+
+        context 'and '
       end
 
 

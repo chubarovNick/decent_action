@@ -1,48 +1,29 @@
-class StubAction < DecentAction::Base
-  contract do
-    attribute :title
-  end
-
-  def perform
-    "Awesome #{contract.title}"
-  end
-
-end
-
-class ControllerStub
-  include DecentAction::Controller::RunAction
-
-  def action
-    run StubAction, {title: 'Gem'} do |interaction|
-      interaction.result
-    end
-  end
-end
-
-class SampleWrapper < DecentAction::ActionWrappers::Base
-  def wrap
-    yield
-  end
-end
-
-class ExceptionWrapper < DecentAction::ActionWrappers::Base
-
-  def wrap
-    begin
-      yield
-    rescue  StandardError
-      return 'Error raised'
-    end
-  end
-
-end
-
-
 describe DecentAction::Controller::RunAction do
+  let(:controller) { ControllerStub.new  }
+  before { allow(controller).to receive(:params) {{title: 'Gem'}} }
+
+  class SampleWrapper < DecentAction::ActionWrappers::Base
+    def wrap
+      yield
+    end
+  end
+
+  class ExceptionWrapper < DecentAction::ActionWrappers::Base
+
+    def wrap
+      begin
+        yield
+      rescue  StandardError
+        return 'Error raised'
+      end
+    end
+
+  end
+
   before { DecentAction.reset_config }
 
   describe '#run' do
-    subject { ControllerStub.new.action }
+    subject { controller.action }
 
 
     context 'when no wrappers are setup' do
@@ -69,10 +50,14 @@ describe DecentAction::Controller::RunAction do
         before do
           DecentAction.configure do |config|
             config.use(ExceptionWrapper)
+            config.use(SampleWrapper)
           end
         end
 
+
         before { expect_any_instance_of(ExceptionWrapper).to receive(:wrap).and_call_original }
+        before { expect_any_instance_of(SampleWrapper).to receive(:wrap).and_call_original }
+
 
         context 'and no exception raised' do
 
