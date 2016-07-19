@@ -11,7 +11,7 @@ module DecentAction
         private
 
          def aggregate_collection(method)
-           safe_nested_objects.map{|col| send(col)}.flatten.compact.map(&method)
+           (_objects + _collections).map{|col| send(col)}.flatten.compact.map(&method)
          end
 
       end

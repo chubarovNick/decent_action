@@ -5,6 +5,11 @@ module DecentAction
 
       included do
         class_attribute :collections
+
+        def _collections
+          self.class.collections || []
+        end
+
       end
 
       module ClassMethods
@@ -12,8 +17,8 @@ module DecentAction
         def collection(name, &block)
           self.collections ||= []
           self.collections << name
-          self.validates name, presence: true
           attribute name, Array[build_contract(block)]
+          self.validates name, presence: true
         end
 
       end
