@@ -3,18 +3,7 @@ describe DecentAction::ActionWrappers::Exception do
 
   let(:action_scope) { double(:action_scope, handler: 'handler') }
 
-  class FooAction < DecentAction::Base
-    contract do
-      attribute :title, String
-      validates :title, presence: true
-    end
-
-    def perform
-      contract.title
-    end
-  end
-
-  let(:execution_context) { DecentAction::Context.new(FooAction, action_scope, {title: 'title'}) }
+  let(:execution_context) { DecentAction::Context.new(StubAction, action_scope, {title: 'title'}) }
 
   let(:wrapper) { described_class.new(execution_context) }
 
