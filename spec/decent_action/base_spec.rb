@@ -151,5 +151,18 @@ describe DecentAction::Base do
     end
   end
 
+  describe '#perform' do
+    context 'for base class it raise Error' do
+      class ActionWithoutPerform < DecentAction::Base
+        contract do; end
+      end
+
+      specify do
+        expect { ActionWithoutPerform.new({}).perform  }.to raise_error('Not implemented')
+      end
+
+    end
+
+  end
 
 end

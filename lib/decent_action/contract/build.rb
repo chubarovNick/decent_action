@@ -19,9 +19,6 @@ module DecentAction
               ::ActiveModel::Name.new(self, nil, 'contract')
             end
 
-            def safe_nested_objects
-             (self.class.collections || []) + (self.class.objects || [])
-            end
           end
 
           contract_class.instance_eval(&block)
