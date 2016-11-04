@@ -1,22 +1,9 @@
 describe DecentAction::Base do
 
-  class Foo < DecentAction::Base
-
-    contract do
-      attribute :title, String
-      validates :title, presence: true
-
-      object :user do
-        attribute :name, String
-        validates :name, presence: true
-      end
-    end
-
-  end
-
   let(:foo_instance) do
-    Foo.new(params)
+    StubAction.new(params)
   end
+
   let(:params) do
     {}
   end
@@ -64,19 +51,69 @@ describe DecentAction::Base do
       before { foo_instance.valid? }
       subject { foo_instance.contract.errors_hash }
       context 'when params has errors' do
-       let(:params) do
-        {title: nil, user:{name: nil}}
-       end
+        let(:params) do
+          {title: nil, user:{name: nil}}
+        end
 
-       specify 'erros should contains validation' do
-         expect(subject[:title]).not_to be_nil
-         expect(subject[:user]).not_to be_nil
-         expect(subject[:user][:name]).not_to be_nil
-       end
+        specify 'erros should contains validation' do
+          expect(subject[:title]).not_to be_nil
+          expect(subject[:user]).not_to be_nil
+          expect(subject[:user][:name]).not_to be_nil
+        end
       end
     end
 
   end
+
+  describe '#success? and #failure?' do
+    # imulate runnig action
+    before { foo_instance.valid? && foo_instance.perform }
+
+
+    context 'when action finished' do
+      let(:params) do
+        {title: 'title', user: {name: 'Name'}}
+      end
+
+      context '#success?' do
+
+        subject { foo_instance.success? }
+
+        it { is_expected.to be_truthy }
+
+      end
+
+      context '#failure?' do
+        subject { foo_instance.failure? }
+
+        it { is_expected.to be_falsey }
+
+      end
+    end
+
+    context 'when action failed' do
+      let(:params) do
+        {title: 'Title'}
+      end
+
+      context '#success?' do
+
+        subject { foo_instance.success? }
+
+        it { is_expected.to be_falsey }
+
+      end
+
+      context '#failure?' do
+        subject { foo_instance.failure? }
+
+        it { is_expected.to be_truthy }
+
+      end
+    end
+
+  end
+
 
   describe '#valid?' do
     subject { foo_instance.valid? }

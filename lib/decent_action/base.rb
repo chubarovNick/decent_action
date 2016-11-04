@@ -22,7 +22,7 @@ module DecentAction
     end
 
     def success?
-      errors.empty?
+      contract.errors.empty?
     end
 
     def failure?
