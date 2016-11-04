@@ -6,6 +6,7 @@ group :local do
   gem 'pry'
 end
 
+gem 'simplecov'
 gem 'codeclimate-test-reporter', group: :test, require: nil
 
 # Specify your gem's dependencies in decent_action.gemspec
