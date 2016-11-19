@@ -1,5 +1,7 @@
+# frozen_string_literal: true
 module DecentAction
   module Authorization
+    # Dsl for action authorization
     module Dsl
       extend ActiveSupport::Concern
 
@@ -11,18 +13,16 @@ module DecentAction
         end
       end
 
+      # Dsl for authorize block
       module ClassMethods
-
         def authorize(&block)
           self.auth_block = block
         end
 
         def auth_block_defined?
-          self.auth_block.present?
+          auth_block.present?
         end
-
       end
-
     end
   end
 end

@@ -1,4 +1,6 @@
+# frozen_string_literal: true
 module DecentAction
+  # Configuration of actions
   class Configuration
     attr_reader :wrappers
     attr_reader :exception_handlers
@@ -18,13 +20,12 @@ module DecentAction
       end
     end
 
-    def set_actor(actor)
+    def action_actor(actor)
       @actor = actor
     end
 
     def handle_exception(exception_class, handler)
       exception_handlers[exception_class] = handler
     end
-
   end
 end

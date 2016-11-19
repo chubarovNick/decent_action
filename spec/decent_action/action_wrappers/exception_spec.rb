@@ -1,9 +1,12 @@
+# frozen_string_literal: true
 describe DecentAction::ActionWrappers::Exception do
-   before { DecentAction.reset_config }
+  before { DecentAction.reset_config }
 
   let(:action_scope) { double(:action_scope, handler: 'handler') }
 
-  let(:execution_context) { DecentAction::Context.new(StubAction, action_scope, {title: 'title'}) }
+  let(:execution_context) do
+    DecentAction::Context.new(StubAction, action_scope, title: 'title')
+  end
 
   let(:wrapper) { described_class.new(execution_context) }
 
@@ -19,9 +22,7 @@ describe DecentAction::ActionWrappers::Exception do
     subject { wrap }
 
     context 'when action not rais exception' do
-
-      it { is_expected.to eq(action)  }
-
+      it { is_expected.to eq(action) }
     end
 
     context 'when exception raise in action and not handled' do
@@ -39,22 +40,21 @@ describe DecentAction::ActionWrappers::Exception do
       context 'when handled' do
         before do
           DecentAction.configure do |config|
-            config.handle_exception(NotStandardError, Proc.new{|action| handler(action) })
+            config.handle_exception(NotStandardError, proc do |action|
+              handler(action)
+            end)
           end
         end
 
         before do
-          expect(action_scope).to receive(:handler).with(execution_context.action)
+          expect(action_scope).to receive(:handler)
+            .with(execution_context.action)
         end
 
-        it {is_expected.to eq('handler') }
+        it { is_expected.to eq('handler') }
 
         context 'and '
       end
-
-
     end
-
   end
-
 end

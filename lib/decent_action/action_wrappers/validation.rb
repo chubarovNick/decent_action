@@ -1,16 +1,13 @@
+# frozen_string_literal: true
 module DecentAction
   module ActionWrappers
+    # Validation wrapper
     class Validation < Base
-
       def wrap
-        if action.contract.valid?
-          yield
-        else
-          raise DecentAction::Exception::InvalidError
-        end
-
+        contract = action.contract
+        raise DecentAction::Exception::InvalidError unless contract.valid?
+        yield
       end
-
     end
   end
 end

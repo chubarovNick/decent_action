@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 describe DecentAction::Contract::Errors do
   class ActionWithComplecsValidations < DecentAction::Base
     contract do
@@ -19,35 +20,34 @@ describe DecentAction::Contract::Errors do
   let(:action) { ActionWithComplecsValidations.new(params) }
 
   before { action.valid? }
-  subject { action.contract.errors_hash  }
+  subject { action.contract.errors_hash }
 
   context '#errors_hash' do
     context 'first level validations' do
-      let(:params) { {title: nil} }
+      let(:params) { { title: nil } }
 
       it 'include to errors_hash' do
-        expect(subject.has_key?(:title)).to be_truthy
+        expect(subject.key?(:title)).to be_truthy
       end
-
     end
 
     context 'objects' do
-      let(:params) { {title: nil, user: {email: nil}} }
+      let(:params) { { title: nil, user: { email: nil } } }
 
       it 'include to errors_hash' do
-        expect(subject.has_key?(:user)).to be_truthy
-        expect(subject[:user].has_key?(:email)).to be_truthy
+        expect(subject.key?(:user)).to be_truthy
+        expect(subject[:user].key?(:email)).to be_truthy
       end
     end
 
     context 'collections' do
-       let(:params) { {title: nil, user: {email: nil}, numbers: [{number: nil}] }}
-
-      it 'include to errors_hash' do
-        expect(subject.has_key?(:numbers)).to be_truthy
+      let(:params) do
+        { title: nil, user: { email: nil }, numbers: [{ number: nil }] }
       end
 
+      it 'include to errors_hash' do
+        expect(subject.key?(:numbers)).to be_truthy
+      end
     end
   end
-
 end

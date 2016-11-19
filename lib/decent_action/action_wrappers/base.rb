@@ -1,5 +1,7 @@
+# frozen_string_literal: true
 module DecentAction
   module ActionWrappers
+    # Base functionality for wrapper objects
     class Base
       attr_reader :execution_context
 
@@ -11,10 +13,10 @@ module DecentAction
         raise 'Not implemented'
       end
 
-      def perform(&block)
-        Proc.new do
+      def perform
+        proc do
           wrap do
-            block.call
+            yield
           end
         end
       end
@@ -26,9 +28,9 @@ module DecentAction
       private
 
       def eval_block_in_context(handler)
-        execution_context.action_scope.instance_exec(execution_context.action, &handler)
+        scope = execution_context.action_scope
+        scope.instance_exec(execution_context.action, &handler)
       end
-
     end
   end
 end

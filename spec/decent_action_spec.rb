@@ -1,11 +1,10 @@
+# frozen_string_literal: true
 require 'spec_helper'
 
 describe DecentAction do
-
   it 'has a version number' do
     expect(DecentAction::VERSION).not_to be nil
   end
-
 
   describe '.configuration' do
     before { DecentAction.reset_config }
@@ -14,9 +13,7 @@ describe DecentAction do
     it { is_expected.not_to be_nil }
 
     describe '.configure' do
-
       context 'when .use with wrapper class' do
-
         let(:wrapper) {  double(:wrapper) }
 
         before do
@@ -36,20 +33,21 @@ describe DecentAction do
 
         before do
           DecentAction.configure do |config|
-            config.handle_exception(DecentAction::Exception::InvalidError, handler)
+            config.handle_exception(
+              DecentAction::Exception::InvalidError,
+              handler
+            )
           end
         end
 
         it { is_expected.not_to be_nil }
 
-        it { is_expected.to include(DecentAction::Exception::InvalidError => handler) }
-
-
+        it do
+          is_expected.to include(
+            DecentAction::Exception::InvalidError => handler
+          )
+        end
       end
-
     end
-
-
   end
-
 end

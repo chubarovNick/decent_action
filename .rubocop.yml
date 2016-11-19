@@ -1,0 +1,15 @@
+# This is the configuration used to check the rubocop source code.
+AllCops:
+  Exclude:
+    - 'vendor/**/*'
+    - 'spec/fixtures/**/*'
+    - 'tmp/**/*'
+    - 'Guardfile'
+  TargetRubyVersion: 2.1
+
+Style/Encoding:
+  EnforcedStyle: when_needed
+  Enabled: true
+
+Style/FrozenStringLiteralComment:
+  EnforcedStyle: always

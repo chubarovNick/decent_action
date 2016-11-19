@@ -1,9 +1,9 @@
+# frozen_string_literal: true
 describe DecentAction::ActionWrappers::Validation do
-
   let(:action_scope) { double(:action_scope) }
 
-  class FooAction < DecentAction::Base 
-    contract do 
+  class FooAction < DecentAction::Base
+    contract do
       attribute :title, String
       validates :title, presence: true
     end
@@ -12,12 +12,13 @@ describe DecentAction::ActionWrappers::Validation do
     end
   end
 
-  let(:execution_context) { DecentAction::Context.new(FooAction, action_scope, {title: title}) }
+  let(:execution_context) do
+    DecentAction::Context.new(FooAction, action_scope, title: title)
+  end
 
   let(:wrapper) { described_class.new(execution_context) }
 
   describe '#wrap' do
-
     let(:wrap) do
       wrapper.wrap do
         execution_context.action.perform
@@ -39,6 +40,5 @@ describe DecentAction::ActionWrappers::Validation do
         expect { wrap }.to raise_error(DecentAction::Exception::InvalidError)
       end
     end
-
   end
 end

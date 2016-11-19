@@ -7,5 +7,8 @@ addons:
   code_climate:
     repo_token: f53558412d42058b35e8dc81c8292423e3c9fcfb94d86c5f0efbc2aee1e95028
 before_install: gem install bundler -v 1.11.2
+script:
+  - rubocop
+  - rake
 after_script:
   - bundle exec codeclimate-test-reporter

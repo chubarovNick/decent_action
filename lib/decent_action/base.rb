@@ -1,4 +1,6 @@
+# frozen_string_literal: true
 module DecentAction
+  # Base action class
   class Base
     include DecentAction::Authorization::Dsl
     include DecentAction::Contract::Dsl
@@ -28,6 +30,5 @@ module DecentAction
     def failure?
       !success?
     end
-
   end
 end

@@ -1,8 +1,8 @@
+# frozen_string_literal: true
 describe DecentAction::Authorization::Dsl do
-
   before do
     DecentAction.configure do |config|
-      config.set_actor :user
+      config.action_actor :user
     end
   end
 
@@ -11,27 +11,26 @@ describe DecentAction::Authorization::Dsl do
       attribute :title, String
     end
 
-    authorize do |actor|
-      actor.admin?
-    end
+    authorize(&:admin?)
 
     def perform
       contract.title
     end
   end
 
-
   describe '.authorize' do
     let(:title) { 'Title' }
 
-    let(:context) { DecentAction::Context.new(ActionWithAuth, self, {title: title} ) }
+    let(:context) do
+      DecentAction::Context.new(ActionWithAuth, self, title: title)
+    end
 
-    before { expect(context).to receive(:authorize).and_call_original  }
+    before { expect(context).to receive(:authorize).and_call_original }
 
     subject { context.run }
 
     context 'when actor has permission for action' do
-      let(:user) { double(:actor, admin?: true)  }
+      let(:user) { double(:actor, admin?: true) }
 
       it { is_expected.to eq(title) }
     end
@@ -42,12 +41,10 @@ describe DecentAction::Authorization::Dsl do
       before { expect(user).to receive(:admin?) }
 
       specify 'exception raised' do
-        expect { subject }.to raise_error(DecentAction::Exception::PermissionCheckError)
+        expect do
+          subject
+        end.to raise_error(DecentAction::Exception::PermissionCheckError)
       end
-
     end
-
   end
-
-
 end

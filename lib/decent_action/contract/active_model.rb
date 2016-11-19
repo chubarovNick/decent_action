@@ -1,5 +1,7 @@
+# frozen_string_literal: true
 module DecentAction
   module Contract
+    # Add ActiveModel behaviour
     module ActiveModel
       extend ActiveSupport::Concern
 
@@ -14,7 +16,6 @@ module DecentAction
       def persisted?
         false
       end
-
     end
   end
 end
