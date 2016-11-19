@@ -6,7 +6,7 @@ group :local do
   gem 'guard-rspec'
   gem 'pry'
 end
-gem 'rubocop'
+gem 'rubocop', require: false
 gem 'simplecov'
 gem 'codeclimate-test-reporter', group: :test, require: nil
 
