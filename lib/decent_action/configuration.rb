@@ -6,6 +6,7 @@ module DecentAction
     attr_reader :exception_handlers
     attr_reader :actor
     attr_accessor :transaction_strategy
+    attr_writer :application_contract
 
     def initialize
       @wrappers = []
@@ -18,6 +19,10 @@ module DecentAction
         wr << wrapper
         wr.uniq!
       end
+    end
+
+    def application_contract
+      @application_contract || DecentAction::Contract::Base
     end
 
     def action_actor(actor)
