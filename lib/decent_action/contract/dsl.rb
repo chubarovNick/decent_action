@@ -17,7 +17,7 @@ module DecentAction
                   when Class
                     base
                   when NilClass
-                    DecentAction::Contract::Base
+                    DecentAction.config.application_contract
                   end
           attribute :contract, build_contract(klass, extend_block || proc {})
         end
