@@ -12,8 +12,14 @@ module DecentAction
 
       # Class methods
       module ClassMethods
-        def contract(&block)
-          attribute :contract, build_contract(block)
+        def contract(base = nil, &extend_block)
+          klass = case base
+                  when Class
+                    base
+                  when NilClass
+                    DecentAction::Contract::Base
+                  end
+          attribute :contract, build_contract(klass, extend_block || proc {})
         end
       end
     end

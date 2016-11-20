@@ -15,10 +15,10 @@ module DecentAction
 
       # Class Methods
       module ClassMethods
-        def object(name, &block)
+        def object(name, klass = DecentAction::Contract::Base, &block)
           self.objects ||= []
           self.objects << name
-          attribute name, build_contract(block)
+          attribute name, build_contract(klass, block)
           validates name, presence: true
         end
       end

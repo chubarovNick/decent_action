@@ -8,11 +8,11 @@ module DecentAction
 
       # Class Methods
       module ClassMethods
-        def build_contract(block)
-          contract_class = Class.new DecentAction::Contract::Base do
+        def build_contract(klass, block = nil)
+          contract_class = Class.new klass do
             include DecentAction::Contract::Build
           end
-          contract_class.instance_eval(&block)
+          contract_class.instance_exec(&block)
           contract_class
         end
       end

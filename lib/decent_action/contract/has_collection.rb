@@ -14,10 +14,10 @@ module DecentAction
       end
       # Class Methods
       module ClassMethods
-        def collection(name, &block)
+        def collection(name, klass = DecentAction::Contract::Base, &block)
           self.collections ||= []
           self.collections << name
-          attribute name, Array[build_contract(block)]
+          attribute name, Array[build_contract(klass, block)]
           validates name, presence: true
         end
       end
