@@ -1,14 +1,18 @@
 language: ruby
 rvm:
-  - 2.2.2
-  - 2.2.3
-bundler_args: --without local
+- 2.2.2
+- 2.2.3
+- 2.3.1
+bundler_args: "--without local"
 addons:
   code_climate:
     repo_token: f53558412d42058b35e8dc81c8292423e3c9fcfb94d86c5f0efbc2aee1e95028
 before_install: gem install bundler -v 1.11.2
 script:
-  - rubocop
-  - rake
+- rubocop
+- rake
 after_script:
-  - bundle exec codeclimate-test-reporter
+- bundle exec codeclimate-test-reporter
+env:
+  global:
+    secure: YnrTCPGgTePViopDAQ9znJtk6vCfgn4dd8zVAiaR1NsLS5aIe6Hd8It9gT62n/cUWLmanoUHU4tx5Kym5xN3+37cQUPwH1IYIXJ57/tiSWt7wVzyUCJcA9r+d/Cjtp7v/MC6BxwMc131sWiP7k4nRXeru7SaNDCK+OJZ7NYXHfFhZ9E7DF1CxLmegYwJaq7rFY1Ko961+mx4pAn9y0wyFueWfD6sovHZOZErQ04l1CyamV2KGSZFeb+9peKgTCzhYebr8XyNaVep1JMoGDD1Ov77M00Z89jJlB9sh/V1XmfADHocpUquctCcZ8xwOeBBRbzFXKelUdsuQbB80KnGG/7DXqhJO36B1lMNOzEpJ35WilI3bM3AOlUnhJzzlr08Jc8+XXCELKXFtW094XupnMLvUsazVGRqsGQapDorytEu1JWTiW0Jcvx19e5cak0aRMx1AfEZxZc5P9vzpHqf8gQN9tH65NwPVj1CrVT+2O77N2zP0ewAzpdOojDz7Inf44v5dKiy2W2oVlwH62wTopSLHwzLQxXj76fh+M4Qoea3fzhWcmE6em0Hw7PbAAP2PIP4BMkUovENxZK9p/2cKv2y6TYUqgS41lBYJ/23i/Pvq2Rt9tAp3Tifren0ZhIH36qX00QDx+vAVBC31bJ1vudpPTKWfsGsy7W9hxcYZlQ=
