@@ -6,7 +6,8 @@ AllCops:
     - 'tmp/**/*'
     - 'Guardfile'
   TargetRubyVersion: 2.1
-
+Metrics/LineLength:
+  Max: 100
 Style/Encoding:
   EnforcedStyle: when_needed
   Enabled: true
