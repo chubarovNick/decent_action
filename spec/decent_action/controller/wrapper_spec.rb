@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 describe DecentAction::Controller::Wrapper do
   before { DecentAction.reset_config }
 

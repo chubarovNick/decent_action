@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 describe DecentAction::Configuration do
   let(:configuration) { DecentAction::Configuration.new }
   subject { configuration }

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'decent_action/version'
 
 require 'virtus'

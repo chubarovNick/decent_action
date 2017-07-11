@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 describe DecentAction::ActionWrappers::Base do
   class WrapperWithoutWrap < DecentAction::ActionWrappers::Base
   end

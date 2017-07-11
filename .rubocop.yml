@@ -11,5 +11,8 @@ Style/Encoding:
   EnforcedStyle: when_needed
   Enabled: true
 
+Metrics/BlockLength:
+  Exclude:
+    - "**/*_spec.rb"
 Style/FrozenStringLiteralComment:
   EnforcedStyle: always

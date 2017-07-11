@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 describe DecentAction::Contract::Dsl do
   context '.contract' do
     context 'allow pass contract blueprint' do

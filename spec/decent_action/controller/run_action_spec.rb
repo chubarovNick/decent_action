@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 describe DecentAction::Controller::RunAction do
   let(:controller) { ControllerStub.new }
   before do

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module DecentAction
   module ActionWrappers
     # Base functionality for wrapper objects

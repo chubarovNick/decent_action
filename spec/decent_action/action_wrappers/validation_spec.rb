@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 describe DecentAction::ActionWrappers::Validation do
   let(:action_scope) { double(:action_scope) }
 

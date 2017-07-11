@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 describe DecentAction::Contract::ActiveModel do
   let(:action) { StubAction.new(title: 'Title') }
 

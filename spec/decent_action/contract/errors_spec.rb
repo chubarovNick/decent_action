@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 describe DecentAction::Contract::Errors do
   class ActionWithComplecsValidations < DecentAction::Base
     contract do

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module DecentActions
   module ActionWrappers
     # Transaction wrapper

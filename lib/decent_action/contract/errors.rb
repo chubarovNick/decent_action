@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module DecentAction
   module Contract
     # Collect erors form all contract

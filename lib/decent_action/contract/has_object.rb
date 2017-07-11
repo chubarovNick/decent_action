@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module DecentAction
   module Contract
     # Dsl for defining nested object within contracts

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module DecentAction
   module Contract
     # Add collection dsl for define collections within contracts

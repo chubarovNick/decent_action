@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 describe DecentAction::Base do
   let(:foo_instance) do
     StubAction.new(params)

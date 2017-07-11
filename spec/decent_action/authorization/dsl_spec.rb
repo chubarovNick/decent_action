@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 describe DecentAction::Authorization::Dsl do
   before do
     DecentAction.configure do |config|
