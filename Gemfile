@@ -8,10 +8,10 @@ group :local do
   gem 'pry'
 end
 gem 'codeclimate-test-reporter', group: :test, require: nil
+gem 'codecov'
+gem 'rails-dummy'
 gem 'rubocop', require: false
 gem 'simplecov'
-
-gem 'rails-dummy'
 gem 'sqlite3'
 # Specify your gem's dependencies in decent_action.gemspec
 gemspec
