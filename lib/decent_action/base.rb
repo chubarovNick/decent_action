@@ -31,5 +31,9 @@ module DecentAction
     def failure?
       !success?
     end
+
+    def test_method
+      'test'
+    end
   end
 end
